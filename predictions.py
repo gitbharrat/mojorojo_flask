@@ -2,24 +2,34 @@ from flask import Flask, request
 import pickle
 import sklearn
 
-model = open('classifier.pkl', 'rb')
-clf = pickle.load(model)
 
 app = Flask(__name__)
 
-@app.route('/predict',methods=["POST"])
-def predict():
 
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World V4 !</p>"
+
+
+@app.route("/ping")
+def pinger():
+    return {"MESSAGE": "Hi I am pinging V4...."}
+
+
+model_pickle= open("artefacts/classifier.pkl", 'rb')
+clf = pickle.load(model_pickle)
+
+
+@app.route("/predict", methods=['POST'])
+def predict():
     loan_req = request.get_json()
 
-    # Encoding Gender
-    if loan_req['Gender'] == 'Male':
+    if loan_req['Gender'] == "Male":
         gender = 0
     else:
         gender = 1
 
-    # Encoding Married
-    if loan_req['Married'] == 'No':
+    if loan_req['Married'] == "No":
         married = 0
     else:
         married = 1
@@ -28,18 +38,12 @@ def predict():
     credit_history = loan_req['Credit_History']
     loan_amount = loan_req['LoanAmount']
 
-    input_data = [[gender, married, applicant_income, credit_history, loan_amount]]
+    input_data = [[gender, married, applicant_income, loan_amount , credit_history]]
     prediction = clf.predict(input_data)
 
-    if prediction == 1:
-        pred = 'Accepted'
+    if prediction == 0:
+        pred = "Rejected"
     else:
-        pred = 'Rejected'
+        pred = "Accepted"
 
     return {"loan_approval_status": pred}
-
-
-
-
-
-
