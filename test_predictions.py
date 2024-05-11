@@ -11,8 +11,8 @@ def test_predict(client):
     test_data = {
         "Gender": "Female",
         "Married": "No",
-        "ApplicantIncome": 5000000,
-        "LoanAmount": 5000,
+        "ApplicantIncome": 500,
+        "LoanAmount": 500000000000000,
         "Credit_History": 1.0
     }
     response = client.post('/predict', json=test_data)

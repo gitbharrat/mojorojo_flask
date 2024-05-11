@@ -10,4 +10,4 @@ def client():
 def test_hello(client):
     response = client.get('/ping')
     assert response.status_code == 200
-    assert response.data == b'{"Message":"Hi, I am pinging...."}\n'
+    assert response.data == b'{"Message":"Hi, I am ping...."}\n'

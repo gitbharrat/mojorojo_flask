@@ -38,7 +38,7 @@ def predict():
     credit_history = loan_req['Credit_History']
     loan_amount = loan_req['LoanAmount']
 
-    input_data = [[gender, married, applicant_income, loan_amount , credit_history]]
+    input_data = [[gender, married, applicant_income, loan_amount, credit_history]]
     prediction = clf.predict(input_data)
 
     if prediction == 0:
