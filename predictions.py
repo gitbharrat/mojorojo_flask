@@ -16,7 +16,7 @@ def pinger():
     return {"MESSAGE": "Hi I am pinging V4...."}
 
 
-model_pickle= open("artefacts/classifier.pkl", 'rb')
+model_pickle= open("artifacts/classifier.pkl", 'rb')
 clf = pickle.load(model_pickle)
 
 
