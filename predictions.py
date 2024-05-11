@@ -8,12 +8,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World V4 !</p>"
+    return "<p>Hello, World V5 !</p>"
 
 
 @app.route("/ping")
 def pinger():
-    return {"MESSAGE": "Hi I am pinging V4...."}
+    return {"MESSAGE": "Hi I am pinging V5.... on AWS CD"}
 
 
 model_pickle= open("artifacts/classifier.pkl", 'rb')
